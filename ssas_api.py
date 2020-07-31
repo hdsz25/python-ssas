@@ -45,7 +45,12 @@ def _load_assemblies(amo_path=None, adomd_path=None):
         If None, will use the default location on Windows.
     """
     # Full path of .dll files
-    root = Path(r"C:\Windows\Microsoft.NET\assembly\GAC_MSIL")
+    # dll paths setup, NuGet puts them here
+    base = "C:/Program Files/PackageManagement/NuGet/Packages/Microsoft.AnalysisServices"
+    _version = "19.6.0"  # at time of this writing
+    amo_path = f"{base}.retail.amd64.{_version}/lib/net45/Microsoft.AnalysisServices.Tabular.dll"
+    adomd_path = f"{base}.AdomdClient.retail.amd64.{_version}/lib/net45/Microsoft.AnalysisServices.AdomdClient.dll"
+    #root = Path(r"C:\Windows\Microsoft.NET\assembly\GAC_MSIL")
     # get latest version of libraries if multiple libraries are installed (max func)
     if amo_path is None:
         amo_path = str(
